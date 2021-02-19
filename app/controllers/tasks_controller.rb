@@ -25,7 +25,7 @@ class TasksController < ApplicationController
       render :edit
     end
   end
-  def detsroy
+  def destroy
     @task.destroy
       redirect_to tasks_path, notice: '削除しました'
   end
