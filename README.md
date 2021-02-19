@@ -17,4 +17,8 @@
 #### - Label
 **id**  
 **label**:integer  
-**task_id**:integer
+**task_id**:integer  
+
+### - Task&Label
+**task_id**:integer  
+**label_id**:integer
