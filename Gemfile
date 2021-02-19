@@ -26,6 +26,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -35,9 +37,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'meta_request'
   gem 'byebug'
-  gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
 end
