@@ -37,5 +37,7 @@ $ heroku stack:set heroku-18
 - 追加でbuildpackが必要な場合,次のようにコマンドを実行.(rubyを開発言語とし,node.jsのbuildpackを追加する場合)  
 $ heroku buildpacks:set heroku/ruby  
 $ heroku buildpacks:add --index 1 heroku/nodejs  
-**5.Herokuへデプロイ**  
+**5.Herokuへデータベース移行**  
+$ heroku run rails db:migrate  
+**6.Herokuへデプロイ**  
 $ git push heroku master  
