@@ -10,7 +10,10 @@ class TasksController < ApplicationController
       @tasks = Task.search_status(params[:status])
     end
     if params[:sort_expired]
-      @tasks = Task.dead_limit
+      @tasks = Task.sort_deadline
+    end
+    if params[:sort_priority]
+      @tasks = Task.sort_priority
     end
   end
   def new
@@ -41,7 +44,7 @@ class TasksController < ApplicationController
   end
   private
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
   end
   def set_task
     @task = Task.find(params[:id])

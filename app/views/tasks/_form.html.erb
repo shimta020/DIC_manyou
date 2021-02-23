@@ -25,6 +25,10 @@
     <%= form.label :status %>
     <%= form.select :status, Task.statuses.keys, include_blank: 'ステータスを選択してください' %>
   </div>
+  <div class="task_priority">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys, include_blank: 'ステータスを選択してください' %>
+  </div>
   <%= form.submit %>
 <% end %>
 <%= link_to "一覧画面にもどる", tasks_path %>
