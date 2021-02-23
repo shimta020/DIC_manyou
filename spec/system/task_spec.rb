@@ -31,6 +31,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content 'test1'
       end
     end
+    context 'タスクを終了期限順にソートするを押した場合' do
+      it '終了期限の近いもの順に並ぶ' do
+        visit tasks_path
+        click_on 'タスクを終了期限順にソートする'
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'test1'
+        expect(task_list[1]).to have_content 'test2'
+      end
+    end
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
