@@ -10,6 +10,8 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in 'task[title]', with: 'test'
         fill_in 'task[content]', with: 'test'
+        fill_in 'task[deadline]', with: '2021-01-01'.to_date
+        select '未着手', from: 'task[status]'
         click_on '登録する'
         expect(page).to have_content '作成完了！'
       end

@@ -2,6 +2,7 @@
 <p><%= notice %></p>
 <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
 <%= f.text_field :search %>
+<%= f.select :status, Task.statuses.keys, include_blank: 'ステータスを選択してください' %>
 <%= f.submit '検索' %>
 <% end %>
 <table>
@@ -16,11 +17,7 @@
     <td class="task_row"><%= task.title %></td>
     <td><%= task.content %></td>
     <td><%= task.deadline %></td>
-    <td>
-      <% if task.status == 0 %>未着手<% end %>
-      <% if task.status == 1 %>着手中<% end %>
-      <% if task.status == 2 %>完了<% end %>
-    </td>
+    <td><%= task.status %></td>
     <td><%= link_to '詳細', task_path(task.id) %></td>
     <td><%= link_to '編集', edit_task_path(task.id) %></td>
     <td><%= link_to '削除', task_path(task.id), method: :delete, data: {confirm: '削除してよろしいですか？'} %></td>
@@ -29,3 +26,4 @@
 </table>
 <%= link_to '新規作成', new_task_path %>
 <%= link_to 'タスクを終了期限順にソートする', tasks_path(sort_expired:'true') %>
+<%= link_to '一覧に戻る', tasks_path %>
