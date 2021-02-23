@@ -30,3 +30,4 @@
 <%= link_to 'タスクを終了期限順にソートする', tasks_path(sort_expired:'true') %>
 <%= link_to 'タスクを優先度順にソートする', tasks_path(sort_priority:'true') %>
 <%= link_to '一覧に戻る', tasks_path %>
+<%= paginate @tasks %>
