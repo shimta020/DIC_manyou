@@ -3,26 +3,31 @@
 <form class="form-inline">
   <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
     <%= f.text_field :search, placeholder:"タイトルで検索", class:"form-control index_form"%>
-    <%= f.select :status, Task.statuses.keys, {}, include_blank: 'ステータスを選択してください', class:"form-control index_status" %>
+    <%= f.select :status, Task.statuses.keys, {include_blank: 'ステータスを選択してください'}, class:"form-control index_status" %>
     <%= f.submit '検索', class:"btn btn-default" %>
   <% end %>
 </form>
-<%= link_to '新規作成', new_task_path, class:"btn btn-primary" %>
-<%= link_to 'タスクを終了期限順にソートする', tasks_path(sort_expired:'true'), class:"btn btn-default" %>
-<%= link_to 'タスクを優先度順にソートする', tasks_path(sort_priority:'true'), class:"btn btn-default" %>
-<%= link_to '一覧に戻る', tasks_path, class:"btn btn-default" %>
+<div class='index-menu'>
+  <%= link_to '新規作成', new_task_path, class:"btn btn-primary" %>
+  <%= link_to 'タスクを終了期限順にソートする', tasks_path(sort_expired:'true'), class:"btn btn-default" %>
+  <%= link_to 'タスクを優先度順にソートする', tasks_path(sort_priority:'true'), class:"btn btn-default" %>
+  <%= link_to '一覧に戻る', tasks_path, class:"btn btn-default" %>
+</div>
 <div class="contents">
   <div class="row">
-    <table class='table table-striped'>
-      <tr>
-        <th>タスク名</th>
-        <th>内容</th>
-        <th>期限</th>
-        <th>ステータス</th>
-        <th>優先度</th>
+    <table class='table table-striped col-md-10'>
+      <tr class="row">
+        <th class="col-md-1">タスク名</th>
+        <th class="col-md-5">内容</th>
+        <th class="col-md-1">期限</th>
+        <th class="col-md-1">ステータス</th>
+        <th class="col-md-1">優先度</th>
+        <th class="col-md-1"></th>
+        <th class="col-md-1"></th>
+        <th class="col-md-1"></th>
       </tr>
       <% @tasks.each do |task| %>
-      <tr>
+      <tr class="row">
         <td class="task_row"><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.deadline %></td>

@@ -23,12 +23,13 @@
   </div>
   <div class="f_form task_status form-group">
     <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys, {},include_blank: 'ステータスを選択してください', class:"form-control" %>
+    <%= form.select :status, Task.statuses.keys, {include_blank: 'ステータスを選択してください'}, class:"form-control" %>
   </div>
   <div class="f_form task_priority form-group">
     <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys, {},include_blank: 'ステータスを選択してください', class:"form-control" %>
+    <%= form.select :priority, Task.priorities.keys, {include_blank: '優先度を設定してください'}, class:"form-control" %>
   </div>
   <%= form.submit '登録する', class:"btn btn-primary form_btn"%>
   <%= link_to "一覧画面にもどる", tasks_path, class:"btn btn-default form_btn" %>
 <% end %>
+  <%= link_to "内容をリセット", new_task_path, class:"btn btn-danger form_btn" %>
