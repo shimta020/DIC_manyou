@@ -9,26 +9,26 @@
       </ul>
     </div>
   <% end %>
-  <div class="task_title">
+  <div class="f_form task_title form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class:"form-control" %>
   </div>
-  <div class="task_content">
+  <div class="f_form task_content form-group">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_area :content, class:"form-control" %>
   </div>
-  <div class="task_deadline">
+  <div class="f_form task_deadline form-group">
     <%= form.label :deadline %>
-    <%= form.date_field :deadline %>
+    <%= form.date_field :deadline, class:"form-control" %>
   </div>
-  <div class="task_status">
+  <div class="f_form task_status form-group">
     <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys, include_blank: 'ステータスを選択してください' %>
+    <%= form.select :status, Task.statuses.keys, {},include_blank: 'ステータスを選択してください', class:"form-control" %>
   </div>
-  <div class="task_priority">
+  <div class="f_form task_priority form-group">
     <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys, include_blank: 'ステータスを選択してください' %>
+    <%= form.select :priority, Task.priorities.keys, {},include_blank: 'ステータスを選択してください', class:"form-control" %>
   </div>
-  <%= form.submit %>
+  <%= form.submit '登録する', class:"btn btn-primary form_btn"%>
+  <%= link_to "一覧画面にもどる", tasks_path, class:"btn btn-default form_btn" %>
 <% end %>
-<%= link_to "一覧画面にもどる", tasks_path %>

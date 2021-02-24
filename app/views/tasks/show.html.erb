@@ -1,10 +1,26 @@
-<h2>タスク詳細画面</h2>
-<p>タイトル: <%= @task.title %></p>
-<p>内容: <%= @task.content %></p>
-<p>期限: <%= @task.deadline %></p>
-<p>ステータス: 
-  <% if @task.status == 0 %>未着手<% end %>
-  <% if @task.status == 1 %>着手中<% end %>
-  <% if @task.status == 2 %>完了<% end %>
-</p>
-<%= link_to '一覧へ戻る', tasks_path %>
+<h3>タスク詳細画面</h3>
+<div class="show_content">
+  <div class="show_name">
+    <p><span class="label label-default">タスク名</span></p>
+    <p><%= @task.title %></p>
+  </div>
+  <div class="show_name">
+    <p><span class="label label-default">内容</span></p>
+    <p><%= @task.content %></p>
+  </div>
+  <div class="show_name">
+    <p><span class="label label-danger">期限</span></p>
+    <p><%= @task.deadline %></p>
+  </div>
+  <div class="show_name f-container">
+    <div class='show_status'>
+      <p><span class="label label-default">ステータス</span></p>
+      <%= @task.status %>
+    </div>
+    <div class='show_priority'>
+      <p><span class="label label-default">優先度</span></p>
+      <%= @task.priority %>
+    </div>
+  </div>
+</div>
+<%= link_to '一覧へ戻る', tasks_path, class:"btn btn-default form_btn" %>
