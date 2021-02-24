@@ -3,31 +3,33 @@
 #### - モデル名
 **カラム名**:データ型  
 としています　　
-
 #### - User
 **id**  
 **name**:string  
-
 #### - Task
 **id**  
 **title**:string  
 **content**:text  
 **user_id**:integer  
 **label_id**:integer  
-
 #### - Label
 **id**  
 **label**:integer  
 **task_id**:integer  
-
 #### - Task&Label
 **task_id**:integer  
 **label_id**:integer
+<<<<<<< HEAD
 
 ## STEP2
 ### Herokuへのデプロイ手順
 bundler ver 2.1.4  
 
+=======
+## STEP2
+### Herokuへのデプロイ手順
+bundler ver 2.1.4  
+>>>>>>> d45d3df4376dd82945e8169eca7d92e8400653f3
 **1.Herokuログイン**  
 $ heroku login  
 ブラウザが立ち上がるので,アドレスとパスワードを入力  
@@ -43,6 +45,13 @@ $ heroku stack:set heroku-18
 - 追加でbuildpackが必要な場合,次のようにコマンドを実行.(rubyを開発言語とし,node.jsのbuildpackを追加する場合)  
 $ heroku buildpacks:set heroku/ruby  
 $ heroku buildpacks:add --index 1 heroku/nodejs  
+<<<<<<< HEAD
 
 **5.Herokuへデプロイ**  
 $ git push heroku master  
+=======
+**5.Herokuへデータベース移行**  
+$ heroku run rails db:migrate  
+**6.Herokuへデプロイ**  
+$ git push heroku master  
+>>>>>>> d45d3df4376dd82945e8169eca7d92e8400653f3
