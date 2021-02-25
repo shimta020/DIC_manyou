@@ -8,7 +8,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <% if current_user.present? %>
+      <p>ようこそ<%= current_user.name %>さん</p>
+    <% end %>
+  </header>
   <body>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>

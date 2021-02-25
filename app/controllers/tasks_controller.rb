@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
   def index
     @tasks = Task.order(created_at: :desc)
     if params[:status].present? && params[:status].present?
@@ -45,7 +46,7 @@ class TasksController < ApplicationController
   end
   private
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, :user_id)
   end
   def set_task
     @task = Task.find(params[:id])
