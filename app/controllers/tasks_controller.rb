@@ -2,19 +2,19 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
   def index
-    @tasks = Task.order(created_at: :desc)
-    if params[:status].present? && params[:status].present?
-      @tasks = Task.search_title(params[:search]).search_status(params[:status])
+    @tasks = current_user.tasks.order(created_at: :desc)
+    if params[:search].present? && params[:status].present?
+      @tasks = current_user.tasks.search_title(params[:search]).search_status(params[:status])
     elsif params[:search].present?
-      @tasks = Task.search_title(params[:search])
+      @tasks = current_user.tasks.search_title(params[:search])
     elsif params[:status].present?
-      @tasks = Task.search_status(params[:status])
+      @tasks = current_user.tasks.search_status(params[:status])
     end
     if params[:sort_expired]
-      @tasks = Task.sort_deadline
+      @tasks = current_user.tasks.sort_deadline
     end
     if params[:sort_priority]
-      @tasks = Task.sort_priority
+      @tasks = current_user.tasks.sort_priority
     end
     @tasks = @tasks.page(params[:page]).per(10)
   end

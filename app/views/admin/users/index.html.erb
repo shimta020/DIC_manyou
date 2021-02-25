@@ -1,0 +1,7 @@
+<h3>admin index</h3>
+<ul>
+<% @users.each do |user| %>
+  <li><%= user.id %>：<%= user.name %></li>
+<% end %>
+</ul>
+<%= link_to '新規作成', %>
