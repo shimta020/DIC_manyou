@@ -1,4 +1,4 @@
-<%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
+<%= form_with(model: @user, local: true) do |f| %>
   <% if @user.errors.any? %>
     <p><%= @user.errors.count %>件のエラーがあります</p>
     <ul>
@@ -9,20 +9,29 @@
       <% end %>
     </ul>
   <% end %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <div class="f_form task_title form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <div class="f_form task_content form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class:"form-control" %>
+  </div>
   <% if action_name == 'new' %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <div class="f_form task_deadline form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class:"form-control" %>
+    </div>
+    <div class="f_form task_deadline form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class:"form-control" %>
+    </div>
   <% end %>
-  <label>
-    admin
-    <%= f.check_box :admin, {}, 'ture', 'false' %>
-  </label>
-  <%= f.submit "Create my account" %>
+  <div class="f_form task_deadline form-group">
+    <label class="btn btn-default">
+      <p>admin</p>
+      <%= f.check_box :admin, {} , true, false %>
+    </label>
+  </div>
+  <%= f.submit "Create my account", class:"btn btn-primary" %>
 <% end %>
-<%= link_to '管理者画面へ', admin_users_path %>

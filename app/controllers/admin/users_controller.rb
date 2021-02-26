@@ -20,8 +20,8 @@ class Admin::UsersController < ApplicationController
   def edit
   end
   def update
-    if @user.update(user_params) && current_page?(edit_admin_user_path(@user.id))
-      redirect_to admin_users_path, notice: '#{@user.name}さんのプロフィールを編集しました'
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user.id), notice: '#{@user.name}さんのプロフィールを編集しました'
     else
       render :edit
     end

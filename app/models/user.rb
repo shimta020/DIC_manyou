@@ -8,18 +8,14 @@ class User < ApplicationRecord
   has_secure_password
 
   before_destroy :alert_at_delete_last_admin
+  before_update :alert_at_delete_last_admin
 
   has_many :tasks, dependent: :destroy
 
   def alert_at_delete_last_admin
     if self.admin? && User.where(admin: :true).count == 1
-      throw :abort, notice: '少なくとも1つのadminアカウントが必要です'
+      errors.add(:base, "最低1ユーザーは管理者権限を持つ必要があります。")
+      throw :abort
     end
   end
-  # エディットでも!!!
-  # def alert_at_update_last_admin
-  #   if self.admin? && User.where(admin: :true).count == 1
-  #     throw :abort, notice: '少なくとも1つのadminアカウントが必要です'
-  #   end
-  # end
 end

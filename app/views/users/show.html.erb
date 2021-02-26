@@ -34,9 +34,6 @@
   </div>
 </div>
 <% if current_user.id == @user.id %>
-  <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
+  <%= link_to 'プロフィール編集', edit_user_path(@user.id), class:"btn btn-default" %>
 <% end %>
-<%= link_to 'タスク一覧へ', tasks_path %>
-<% if current_user.admin? %>
-  <%= link_to '管理者画面へ', admin_users_path %>
-<% end %>
+<%= link_to 'タスク一覧へ', tasks_path, class:"btn btn-default" %>

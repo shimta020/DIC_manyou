@@ -1,8 +1,12 @@
 <h3>Log In</h3>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.submit "Log in" %>
+  <div class="f_form task_title form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class:"form-control" %>
+  </div>
+  <div class="f_form task_title form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class:"form-control" %>
+  </div>
+  <%= f.submit "Log in", class:"btn btn-primary form_btn" %>
 <% end %>
