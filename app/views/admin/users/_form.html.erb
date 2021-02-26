@@ -1,0 +1,28 @@
+<%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
+  <% if @user.errors.any? %>
+    <p><%= @user.errors.count %>件のエラーがあります</p>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <% if action_name == 'new' %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  <% end %>
+  <label>
+    admin
+    <%= f.check_box :admin, {}, 'ture', 'false' %>
+  </label>
+  <%= f.submit "Create my account" %>
+<% end %>
+<%= link_to '管理者画面へ', admin_users_path %>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def edit
   end
   def update
-    if @user.update(user_params)
+    if @user.update(user_params) && current_page?(edit_user_path(@user.id))
       redirect_to user_path(@user.id)
     else
       render :edit
@@ -33,7 +33,10 @@ class UsersController < ApplicationController
   end
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name,
+                                 :email,
+                                 :password, 
+                                 :password_confirmation)
   end
   def set_user
     @user = User.find(params[:id])
