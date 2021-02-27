@@ -19,13 +19,13 @@ class UsersController < ApplicationController
   end
   def show
     if current_user.id != @user.id
-      redirect_to tasks_path
+      redirect_to tasks_path, notice: '他人のプロフィールは見れないよ！'
     end
   end
   def edit
   end
   def update
-    if @user.update(user_params) && current_page?(edit_user_path(@user.id))
+    if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
       render :edit

@@ -5,6 +5,7 @@
       <tr class="row">
         <th class="col-md-1">id</th>
         <th class="col-md-1">名前</th>
+        <th class="col-md-2">Email</th>
         <th class="col-md-1">タスク数</th>
         <th class="col-md-1">管理者権限</th>
         <th class="col-md-3">作成日時</th>
@@ -16,6 +17,7 @@
       <tr class="row">
         <td class="task_row"><%= user.id %></td>
         <td><%= user.name %></td>
+        <td><%= user.email %></td>
         <td><%= user.tasks.count %></td>
         <td><%= user.admin %></td>
         <td><%= user.created_at %></td>
@@ -27,5 +29,6 @@
     </table>
   </div>
 </div>
-<%= link_to 'タスク一覧へ', tasks_path, class:"btn btn-default" %>
 <%= link_to 'ユーザー新規作成', new_admin_user_path, class:"btn btn-primary" %>
+<%= link_to 'タスク一覧へ', tasks_path, class:"btn btn-default" %>
+<%= paginate @users %>

@@ -2,11 +2,13 @@ class Admin::UsersController < ApplicationController
   before_action :admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
-    @users = User.all.order(created_at: :asc)
+    @users = User.all.order(created_at: :asc).page(params[:page]).per(10)
   end
+
   def new
     @user = User.new
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -15,13 +17,16 @@ class Admin::UsersController < ApplicationController
       render :new
     end
   end
+
   def show
   end
+
   def edit
   end
+  
   def update
     if @user.update(user_params)
-      redirect_to admin_user_path(@user.id), notice: '#{@user.name}さんのプロフィールを編集しました'
+      redirect_to admin_user_path(@user.id), notice: "#{@user.name}さんのプロフィールを編集しました"
     else
       render :edit
     end
@@ -35,8 +40,7 @@ class Admin::UsersController < ApplicationController
   end
   private
   def admin_user
-    redirect_to root_path unless current_user.admin?
-    flash[:alert] = '管理者以外はアクセスできません！'
+    redirect_to root_url, notice: '管理者以外はアクセス出来ません!!!' unless current_user.admin?
   end
   def user_params
     params.require(:user).permit(:name,

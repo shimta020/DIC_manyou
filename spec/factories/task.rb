@@ -8,6 +8,7 @@ FactoryBot.define do
     deadline { '2021-01-01' }
     status { 0 }
     priority { 0 }
+    association :user
   end
   # 作成するテストデータの名前を「second_task」とします
   # （存在しないクラス名の名前をつける場合、オプションで「このクラスのテストデータにしてください」と指定します）
@@ -17,6 +18,7 @@ FactoryBot.define do
     deadline { '2020-01-01' }
     status { 1 }
     priority { 1 }
+    association :user, factory: :second_user
   end
   factory :third_task, class: Task do
     title { 'test3' }
@@ -24,5 +26,6 @@ FactoryBot.define do
     deadline { '2022-01-01' }
     status { 2 }
     priority { 2 }
+    association :user, factory: :third_user
   end
 end

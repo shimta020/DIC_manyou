@@ -18,9 +18,11 @@ class TasksController < ApplicationController
     end
     @tasks = @tasks.page(params[:page]).per(10)
   end
+
   def new
     @task = Task.new
   end
+
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
@@ -29,10 +31,13 @@ class TasksController < ApplicationController
       render :new
     end
   end
+
   def show
   end
+
   def edit
   end
+
   def update
     if @task.update(task_params)
       redirect_to tasks_path, notice: '編集完了!'
@@ -40,6 +45,7 @@ class TasksController < ApplicationController
       render :edit
     end
   end
+  
   def destroy
     @task.destroy
       redirect_to tasks_path, notice: '削除しました'
