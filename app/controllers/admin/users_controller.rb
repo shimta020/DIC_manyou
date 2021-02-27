@@ -2,7 +2,14 @@ class Admin::UsersController < ApplicationController
   before_action :admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
-    @users = User.all.order(created_at: :asc).page(params[:page]).per(10)
+    @users = User.select(:id,
+                         :name,
+                         :email, 
+                         :created_at,
+                         :admin
+                        )
+                        .order(created_at: :asc)
+                        .page(params[:page]).per(10)
   end
 
   def new
