@@ -51,7 +51,7 @@ RSpec.describe 'ユーザー機能', type: :system do
     context 'Logoutをクリックすると' do
       it 'ログアウトできる' do
         click_on 'Logout'
-        expect(page).to have_content 'ログアウトしました'
+        expect(page).to have_content 'Log In Form'
       end
     end
   end
@@ -78,7 +78,6 @@ RSpec.describe 'ユーザー機能', type: :system do
         expect(page).to have_content 'ユーザーが1人増えました〜'
       end
       it 'ユーザーの詳細画面にアクセスできる' do
-        # click_link '詳細', href: admin_user_path(1)
         click_on '詳細',match: :first
         expect(page).to have_content 'general_user'
       end
@@ -86,7 +85,7 @@ RSpec.describe 'ユーザー機能', type: :system do
         click_on '編集',match: :first
         fill_in 'user[name]', with: 'name_change'
         check 'user[admin]'
-        click_on 'Update account'
+        click_on '編集'
         expect(page).to have_content 'name_changeさんのプロフィールを編集しました'
       end
       it 'ユーザーの削除ができる' do

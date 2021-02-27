@@ -2,14 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
-    @users = User.select(:id,
-                         :name,
-                         :email, 
-                         :created_at,
-                         :admin
-                        )
-                        .order(created_at: :asc)
-                        .page(params[:page]).per(10)
+    @users = User.all.includes(:tasks).order(created_at: :asc).page(params[:page]).per(10)
   end
 
   def new
@@ -35,6 +28,7 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to admin_user_path(@user.id), notice: "#{@user.name}さんのプロフィールを編集しました"
     else
+      flash[:notice] = '管理者は最低1人必要です'
       render :edit
     end
   end
@@ -42,7 +36,8 @@ class Admin::UsersController < ApplicationController
     if @user.destroy
       redirect_to admin_users_path, notice: 'ユーザーを削除しました'
     else
-      redirect_to admin_users_path, notice: '削除に失敗しました...'
+      flash[:notice] = '管理者は最低1人必要です'
+      redirect_to admin_users_path
     end
   end
   private

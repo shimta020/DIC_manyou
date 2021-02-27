@@ -14,14 +14,13 @@ class User < ApplicationRecord
 
   def alert_at_delete_last_admin
     if self.admin? && User.where(admin: :true).count == 1
-      errors.add(:base, "最低1ユーザーは管理者権限を持つ必要があります。")
       throw :abort
     end
   end
   def alert_at_update_last_admin
-    if self.admin == false && User.where(admin: :true).count == 1
-      errors.add(:base, "最低1ユーザーは管理者権限を持つ必要があります。")
-      throw :abort
+    user = User.where(id: self.id).where(admin: true)
+    if self.admin == false && User.where(admin: true).count == 1 && user.present?
+     throw(:abort)
     end
   end
 end

@@ -27,5 +27,9 @@
       <%= f.password_field :password_confirmation, class:"form-control" %>
     </div>
   <% end %>
-  <%= f.submit "新規作成", class:"btn btn-primary" %>
+  <% if action_name == 'new' || action_name == 'create' %>
+    <%= f.submit "新規作成", class:"btn btn-primary" %>
+  <% else %>
+    <%= f.submit "更新", class:"btn btn-primary" %>
+  <% end %>
 <% end %>
