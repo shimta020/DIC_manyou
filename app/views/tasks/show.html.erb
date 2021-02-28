@@ -22,5 +22,11 @@
       <%= @task.priority %>
     </div>
   </div>
+  <div class="show_name">
+    <p><span class="label label-default">ラベル</span></p>
+    <% @task.labels.each do |label| %>
+          <span class="label label-success"><%= label.label_name %></span>
+    <% end %>
+  </div>
 </div>
 <%= link_to '一覧へ戻る', tasks_path, class:"btn btn-default form_btn" %>

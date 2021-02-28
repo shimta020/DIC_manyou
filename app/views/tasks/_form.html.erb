@@ -18,16 +18,20 @@
     <%= form.text_area :content, class:"form-control" %>
   </div>
   <div class="f_form task_deadline form-group">
-    <%= form.label :deadline %>
+    <%= form.label :期限 %>
     <%= form.date_field :deadline, class:"form-control" %>
   </div>
   <div class="f_form task_status form-group">
-    <%= form.label :status %>
+    <%= form.label :ステータス %>
     <%= form.select :status, Task.statuses.keys, {include_blank: 'ステータスを選択してください'}, class:"form-control" %>
   </div>
   <div class="f_form task_priority form-group">
-    <%= form.label :priority %>
+    <%= form.label :優先度 %>
     <%= form.select :priority, Task.priorities.keys, {include_blank: '優先度を設定してください'}, class:"form-control" %>
+  </div>
+  <div class="f_form task_priority form-group">
+    <p><%= form.label :ラベル %></p>
+    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :label_name, class:"form-control" ) %>
   </div>
   <%= form.submit '登録する', class:"btn btn-primary form_btn"%>
   <%= link_to "一覧画面にもどる", tasks_path, class:"btn btn-default form_btn" %>

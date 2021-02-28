@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'labels/new'
   root to: 'tasks#index'
   resources :tasks
   resources :users, only: [:new, :create, :show, :edit, :update]

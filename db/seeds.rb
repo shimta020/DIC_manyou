@@ -43,3 +43,20 @@ User.create!(
     )
   end
 end
+
+Label.create!(
+  [
+    {
+      label_name: '勉強',
+    },
+    {
+      label_name: '家事',
+    },
+    {
+      label_name: '息抜き',
+    },
+    {
+      label_name: '打ち合わせ',
+    }
+  ]
+)
