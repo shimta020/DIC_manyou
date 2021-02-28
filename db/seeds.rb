@@ -7,56 +7,46 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(
-  [
-    {
       name: 'admin_user',
       email: 'admin@example.com',
       password: 'password',
       password_confirmation: 'password',
       admin: true
-    },
-    {
-      name: 'test',
-      email: 'test@example.com',
-      password: 'password',
-      password_confirmation: 'password',
-      admin: false
-    },
-    {
-      name: 'sample',
-      email: 'sample@example.com',
-      password: 'password',
-      password_confirmation: 'password',
-      admin: false
-    }
-  ]
 )
 
-3.times do |n|
+11.times do |n|
+  User.create!(
+    name: "test#{n}",
+    email: "test#{n}@example.com",
+    password: 'password',
+    password_confirmation: 'password',
+    admin: true
+  )
+end
+
+12.times do |n|
   User.all.each do |user|
     user.tasks.create!(
-      title: "test#{n}",
+      title: "task#{n}",
       content: "sample#{n}",
       deadline: Date.current + (n).days,
-      status: n,
-      priority: n
+      status: rand(0..2),
+      priority: rand(0..2)
     )
   end
 end
 
 Label.create!(
   [
-    {
-      label_name: '勉強',
-    },
-    {
-      label_name: '家事',
-    },
-    {
-      label_name: '息抜き',
-    },
-    {
-      label_name: '打ち合わせ',
-    }
+    {label_name: '勉強'},
+    {label_name: 'プログラミング'},
+    {label_name: '授業'},
+    {label_name: '会議'},
+    {label_name: '出張'},
+    {label_name: '家事'},
+    {label_name: '息抜き'},
+    {label_name: 'ライブ'},
+    {label_name: '飲み会'},
+    {label_name: 'その他'},
   ]
 )

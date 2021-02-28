@@ -30,5 +30,9 @@
   </div>
 </div>
 <%= link_to 'ユーザー新規作成', new_admin_user_path, class:"btn btn-primary" %>
+<%= link_to 'ラベル作成', new_label_path, class:"btn btn-info" %>
+<%= link_to 'ラベル一覧', labels_path, class:"btn btn-success" %>
 <%= link_to 'タスク一覧へ', tasks_path, class:"btn btn-default" %>
+<div>
 <%= paginate @users %>
+</div>

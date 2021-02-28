@@ -3,6 +3,7 @@
   <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
     <%= f.text_field :search, placeholder:"タイトルで検索", class:"form-control index_form"%>
     <%= f.select :status, Task.statuses.keys, {include_blank: 'ステータスを選択してください'}, class:"form-control index_status" %>
+    <%= f.select :label_id, Label.pluck(:label_name, :id), {include_blank: 'ラベルを選択してください'}, class:"form-control index_status" %>
     <%= f.submit '検索', class:"btn btn-default" %>
   <% end %>
 </form>
