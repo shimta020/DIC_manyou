@@ -9,6 +9,13 @@
 User.create!(
   [
     {
+      name: 'admin_user',
+      email: 'admin@example.com',
+      password: 'password',
+      password_confirmation: 'password',
+      admin: true
+    },
+    {
       name: 'test',
       email: 'test@example.com',
       password: 'password',
@@ -16,11 +23,23 @@ User.create!(
       admin: false
     },
     {
-      name: 'admin_user',
-      email: 'admin@example.com',
+      name: 'sample',
+      email: 'sample@example.com',
       password: 'password',
       password_confirmation: 'password',
-      admin: true
+      admin: false
     }
   ]
 )
+
+3.times do |n|
+  User.all.each do |user|
+    user.tasks.create!(
+      title: "test#{n}",
+      content: "sample#{n}",
+      deadline: Date.current + (n).days,
+      status: n,
+      priority: n
+    )
+  end
+end
