@@ -13,4 +13,5 @@ class Task < ApplicationRecord
   scope :search_title, -> (title) { where(["title like ?","%#{title}%"]) }
   scope :search_status, -> (status) { where(status: status) }
 
+  belongs_to :user
 end

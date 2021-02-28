@@ -1,0 +1,37 @@
+<h3>ユーザー新規作成</h3>
+<%= form_with(scope: :user, url: admin_users_path, method: :post, local: true) do |f| %>
+  <% if @user.errors.any? %>
+    <p><%= @user.errors.count %>件のエラーがあります</p>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="f_form task_title form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+  <div class="f_form task_content form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class:"form-control" %>
+  </div>
+  <div class="f_form task_deadline form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class:"form-control" %>
+  </div>
+  <div class="f_form task_deadline form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class:"form-control" %>
+  </div>
+  <div class="f_form task_deadline form-group">
+    <label class="btn btn-default">
+      <p>admin</p>
+      <%= f.hidden_field :admin, value: false %>
+      <%= f.check_box :admin, {} , true, false %>
+    </label>
+  </div>
+  <%= f.submit "Create account", class:"btn btn-primary" %>
+<% end %>
