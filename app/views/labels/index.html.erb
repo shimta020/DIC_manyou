@@ -6,7 +6,7 @@
         <td>
           <% if label %>
             <h4><span class="label label-default"><%= label.label_name %></span></h4>
-            <%= link_to '削除', labels_path(label.id), method: :delete, data: {confirm: '削除してよろしいですか？'}, class:"btn btn-danger" %>
+            <%= link_to '削除', label_path(label.id), method: :delete, data: {confirm: '削除してよろしいですか？'}, class:"btn btn-danger" %>
           <% end %>
         </td>
       <% end %>

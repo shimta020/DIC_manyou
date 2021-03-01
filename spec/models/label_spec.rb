@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe Label, type: :model do
   describe 'ラベルモデル機能', type: :model do
     describe 'バリデーションのテスト' do

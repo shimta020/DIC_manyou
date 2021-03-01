@@ -1,5 +1,8 @@
 FactoryBot.define do
-  factory :label do
-    label_name { "MyString" }
+  factory :study_label, class:Label do
+    label_name { "study" }
+  end
+  factory :music_label, class: Label do
+    label_name { "music" }
   end
 end

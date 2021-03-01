@@ -28,7 +28,7 @@
         <th class="col-md-1"></th>
       </tr>
       <% @tasks.each do |task| %>
-      <tr class="row">
+      <tr class="row task_rspec_row" id=<%= "#{task.id}" %> >
         <td class="task_row"><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.deadline %></td>

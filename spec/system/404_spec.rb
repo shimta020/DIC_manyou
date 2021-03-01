@@ -9,7 +9,7 @@ describe '404エラーについて' do
     visit tasks_path
     FactoryBot.create(:task, user: user)
   end
-  context '@taskが見つからない場合' do
+  context 'taskが見つからない場合' do
     it 'レスポンスに404番を返す' do
       visit task_path(2)
       expect(page).to have_content("Couldn't find Task with 'id'=2")
