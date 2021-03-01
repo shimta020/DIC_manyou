@@ -20,7 +20,7 @@ User.create!(
     email: "test#{n}@example.com",
     password: 'password',
     password_confirmation: 'password',
-    admin: true
+    admin: false
   )
 end
 
