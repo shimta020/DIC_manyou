@@ -1,0 +1,15 @@
+<h3>ラベル一覧</h3>
+<table class='table'>
+  <% @labels.all.in_groups_of(3) do |row| %>
+    <tr>
+      <% row.each do |label| %>
+        <td>
+          <% if label %>
+            <h4><span class="label label-default"><%= label.label_name %></span></h4>
+            <%= link_to '削除', label_path(label.id), method: :delete, data: {confirm: '削除してよろしいですか？'}, class:"btn btn-danger" %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

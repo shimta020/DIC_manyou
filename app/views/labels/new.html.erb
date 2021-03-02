@@ -1,0 +1,18 @@
+<h3>ラベル新規作成</h3>
+<%= form_with(model: @label, local:true) do |label| %>
+<% if @label.errors.any? %>
+  <div id="error_explanation">
+    <h4><%= @label.errors.count %>件のエラーがあります。</h4>
+    <ul>
+    <% @label.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  <div class="f_form task_title form-group">
+    <%= label.label :ラベル名 %>
+    <%= label.text_field :label_name,placeholder: 'タスク名を入力', class:"form-control" %>
+  </div>
+  <%= label.submit '登録する', class:"btn btn-primary form_btn"%>
+<% end %>

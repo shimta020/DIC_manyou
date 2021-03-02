@@ -4,18 +4,23 @@ class TasksController < ApplicationController
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
     if params[:search].present? && params[:status].present?
-      @tasks = current_user.tasks.search_title(params[:search]).search_status(params[:status])
+      @tasks = current_user.tasks.search_title(params[:search]).search_status(params[:status]).page(params[:page]).per(10)
     elsif params[:search].present?
-      @tasks = current_user.tasks.search_title(params[:search])
+      @tasks = current_user.tasks.search_title(params[:search]).page(params[:page]).per(10)
     elsif params[:status].present?
-      @tasks = current_user.tasks.search_status(params[:status])
+      @tasks = current_user.tasks.search_status(params[:status]).page(params[:page]).per(10)
+    elsif params[:label_id].present?
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page(params[:page]).per(10)
     end
+
     if params[:sort_expired]
-      @tasks = current_user.tasks.sort_deadline
+      @tasks = current_user.tasks.sort_deadline.page(params[:page]).per(10)
     end
+
     if params[:sort_priority]
-      @tasks = current_user.tasks.sort_priority
+      @tasks = current_user.tasks.sort_priority.page(params[:page]).per(10)
     end
+    
     @tasks = @tasks.page(params[:page]).per(10)
   end
 
@@ -52,7 +57,13 @@ class TasksController < ApplicationController
   end
   private
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority, :user_id)
+    params.require(:task).permit(:title,
+                                 :content,
+                                 :deadline, 
+                                 :status, 
+                                 :priority, 
+                                 :user_id,
+                                 label_ids: [] )
   end
   def set_task
     @task = Task.find(params[:id])

@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_114341) do
+ActiveRecord::Schema.define(version: 2021_02_28_090641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "label_tasks", force: :cascade do |t|
+    t.bigint "label_id"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_label_tasks_on_label_id"
+    t.index ["task_id"], name: "index_label_tasks_on_task_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "title", null: false
@@ -38,5 +53,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_114341) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "label_tasks", "labels"
+  add_foreign_key "label_tasks", "tasks"
   add_foreign_key "tasks", "users"
 end

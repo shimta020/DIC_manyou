@@ -44,7 +44,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '終了期限の近いもの順に並ぶ' do
         visit tasks_path
         click_on 'タスクを終了期限順にソートする'
-        sleep(0.5)
+        sleep(3)
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'test3'
         expect(task_list[1]).to have_content 'test1'
@@ -56,15 +56,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'test3'
         expect(task_list[1]).to have_content 'test2'
-      end
-    end
-    context 'タスクを終了期限順にソートするを押した場合' do
-      it '終了期限の近いもの順に並ぶ' do
-        visit tasks_path
-        click_on 'タスクを終了期限順にソートする'
-        task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'test3'
-        expect(task_list[1]).to have_content 'test1'
       end
     end
   end
